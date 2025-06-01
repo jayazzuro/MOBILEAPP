@@ -19,10 +19,8 @@ public class APISearch {
 
     // Hàm tìm kiếm sản phẩm theo keyword
     public static void searchProducts(Context context, String keyword, List<SanPham> sanPhamList, SanPhamAdapter adapter) {
-        // ✅ Chọn 1 dạng URL phù hợp với backend bạn đang dùng
-        String url = "http://10.0.2.2:3000/api/Search?keyword=" + keyword;
-        // Nếu backend định nghĩa dạng khác (ví dụ /Search/keyword), hãy thay đổi cho đúng
 
+        String url = "http://10.0.2.2:3000/api/Search?keyword=" + keyword;
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
