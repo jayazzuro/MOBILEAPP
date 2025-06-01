@@ -143,13 +143,18 @@ const getTheLoaiApi = async (req, res) => {
 // APi Search
 const Search = async (req, res) => {
   try {
-    const [keyword] = req.query;
-    const searchKeyword = `%${keyword}%`;
+    const { keyword } = req.query; // Lấy từ khóa tìm kiếm từ query string
+    if (!keyword) {
+      return res.status(400).json({ error: "Thiếu từ khóa tìm kiếm" });
+    }
+
+    // Sử dụng LIKE để tìm kiếm tên sản phẩm chứa từ khóa
     const [rows] = await connection.query(
-      `Select * from hanghoa where tenHang like ?`,
-      [searchKeyword]
+      "SELECT * FROM hanghoa WHERE tenHang LIKE ?",
+      [`%${keyword}%`]
     );
-    res.json(rows);
+
+    res.json(rows); // Trả về kết quả tìm kiếm
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
