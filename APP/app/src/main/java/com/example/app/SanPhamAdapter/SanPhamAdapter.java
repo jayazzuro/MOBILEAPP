@@ -56,6 +56,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgSanPham;
         TextView txtTen, txtGia;
@@ -67,4 +68,5 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             txtGia = itemView.findViewById(R.id.txtGia);
         }
     }
+
 }

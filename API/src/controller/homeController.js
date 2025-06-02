@@ -143,7 +143,7 @@ const getTheLoaiApi = async (req, res) => {
 // APi Search
 const Search = async (req, res) => {
   try {
-    const [keyword] = req.query;
+    const keyword = req.query.keyword || "";
     const searchKeyword = `%${keyword}%`;
     const [rows] = await connection.query(
       `Select * from hanghoa where tenHang like ?`,
