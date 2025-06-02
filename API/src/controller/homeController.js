@@ -68,7 +68,7 @@ const registerApi = async (req, res) => {
       return res.json({
         success: true,
         message: "Đăng ký thành công",
-        user: rows[0],
+        user: { email },
       });
     } else {
       return res
@@ -143,18 +143,13 @@ const getTheLoaiApi = async (req, res) => {
 // APi Search
 const Search = async (req, res) => {
   try {
-    const { keyword } = req.query; // Lấy từ khóa tìm kiếm từ query string
-    if (!keyword) {
-      return res.status(400).json({ error: "Thiếu từ khóa tìm kiếm" });
-    }
-
-    // Sử dụng LIKE để tìm kiếm tên sản phẩm chứa từ khóa
+    const [keyword] = req.query;
+    const searchKeyword = `%${keyword}%`;
     const [rows] = await connection.query(
-      "SELECT * FROM hanghoa WHERE tenHang LIKE ?",
-      [`%${keyword}%`]
+      `Select * from hanghoa where tenHang like ?`,
+      [searchKeyword]
     );
-
-    res.json(rows); // Trả về kết quả tìm kiếm
+    res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public class login extends AppCompatActivity {
 
     EditText emailEditText, passwordEditText;
-    Button loginBtn;
+    Button loginBtn,iddk;
     RequestQueue requestQueue;
 
     private static final String TAG = "LoginExample";
@@ -33,12 +33,17 @@ public class login extends AppCompatActivity {
         emailEditText = findViewById(R.id.editTextText);
         passwordEditText = findViewById(R.id.editTextTextPassword);
         loginBtn = findViewById(R.id.iddn);
+        iddk = findViewById(R.id.iddk);
 
         requestQueue = Volley.newRequestQueue(this);
 
         loginBtn.setOnClickListener(view -> login());
+        iddk.setOnClickListener(view -> signup());
     }
-
+    private void signup(){
+        Intent intent = new Intent(login.this , dangky.class);
+        startActivity(intent);
+    }
     private void login() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();

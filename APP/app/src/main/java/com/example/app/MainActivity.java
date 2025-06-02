@@ -1,11 +1,8 @@
 package com.example.app;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,20 +13,18 @@ import com.example.app.SanPhamAdapter.SanPhamAdapter;
 import com.example.app.SanPham.SanPham;
 import com.example.app.API.APItheloai;
 import com.example.app.API.APIsanpham;
-import com.example.app.API.APISearch;
 import com.example.app.utils.ImageSlider;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView, rvProducts;
+    RecyclerView recyclerView;
     SanPhamAdapter adapter;
     List<SanPham> sanPhamList;
     Spinner mySpinner;
     TextView idten;
     ImageView imageView;
     ImageSlider imageSlider;
-    EditText etSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
         mySpinner = findViewById(R.id.mySpinner);
         imageView = findViewById(R.id.id1);
         idten = findViewById(R.id.idten);
-        etSearch = findViewById(R.id.etSearch);
-        rvProducts = findViewById(R.id.rvProducts);
 
         sanPhamList = new ArrayList<>();
         adapter = new SanPhamAdapter(this, sanPhamList);
@@ -62,18 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
-        });
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                APISearch.searchProducts(MainActivity.this, s.toString(), sanPhamList, adapter);
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {}
         });
     }
 }

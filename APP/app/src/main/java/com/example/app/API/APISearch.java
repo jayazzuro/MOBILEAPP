@@ -30,10 +30,10 @@ public class APISearch {
                         try {
                             JSONObject obj = response.getJSONObject(i);
                             SanPham sanPham = new SanPham(
-                                    obj.getString("name"),
-                                    obj.getInt("price"),
-                                    obj.getString("image"),
-                                    obj.getString("category")
+                                    obj.getString("tenhang"),
+                                    obj.getInt("dongia"),
+                                    obj.getString("hinhanh"),
+                                    obj.getString("tenloai")
                             );
                             sanPhamList.add(sanPham);
                         } catch (JSONException e) {
