@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public class login extends AppCompatActivity {
 
     EditText emailEditText, passwordEditText;
-    Button loginBtn,iddk;
+    Button loginBtn;
     RequestQueue requestQueue;
 
     private static final String TAG = "LoginExample";
@@ -33,17 +33,12 @@ public class login extends AppCompatActivity {
         emailEditText = findViewById(R.id.editTextText);
         passwordEditText = findViewById(R.id.editTextTextPassword);
         loginBtn = findViewById(R.id.iddn);
-        iddk = findViewById(R.id.iddk);
 
         requestQueue = Volley.newRequestQueue(this);
 
         loginBtn.setOnClickListener(view -> login());
-        iddk.setOnClickListener(view -> signup());
     }
-    private void signup(){
-        Intent intent = new Intent(login.this , dangky.class);
-        startActivity(intent);
-    }
+
     private void login() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
@@ -71,6 +66,7 @@ public class login extends AppCompatActivity {
                                 Toast.makeText(this, "Đăng nhập thành công: " + userEmail, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(login.this, MainActivity.class);
                                 startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(this, "Sai thông tin đăng nhập", Toast.LENGTH_SHORT).show();
                             }

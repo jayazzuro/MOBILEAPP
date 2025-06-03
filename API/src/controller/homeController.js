@@ -68,7 +68,7 @@ const registerApi = async (req, res) => {
       return res.json({
         success: true,
         message: "Đăng ký thành công",
-        user: { email },
+        user: rows[0],
       });
     } else {
       return res
@@ -143,7 +143,7 @@ const getTheLoaiApi = async (req, res) => {
 // APi Search
 const Search = async (req, res) => {
   try {
-    const keyword = req.query.keyword || "";
+    const [keyword] = req.query;
     const searchKeyword = `%${keyword}%`;
     const [rows] = await connection.query(
       `Select * from hanghoa where tenHang like ?`,
